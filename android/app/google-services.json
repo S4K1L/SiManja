@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "105555568651",
+    "project_id": "simanja-ac9ae",
+    "storage_bucket": "simanja-ac9ae.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105555568651:android:226567d0d6adedaa78bf0e",
+        "android_client_info": {
+          "package_name": "com.gs.simanja"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxLsYVkn_HejwY8lv0qTxDkZ-lZl9jCGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
