@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:simanja/controller/data_controller.dart';
-import 'package:simanja/controller/login_controller.dart';
 import 'package:simanja/utils/constant/const.dart';
 import 'package:simanja/utils/theme/colors.dart';
 import 'package:simanja/utils/widgets/intro_widgets.dart';
 import 'package:simanja/utils/widgets/service_tile.dart';
+import 'package:simanja/utils/widgets/single_line_text_menu.dart';
 import 'package:simanja/view/user/information/faq.dart';
 import 'package:simanja/view/user/information/form_list.dart';
-import 'package:simanja/view/user/information/update/update.dart';
+import 'package:simanja/view/user/information/updates.dart';
 import 'package:simanja/view/user/services/food.dart';
 import 'package:simanja/view/user/services/grooming.dart';
 import 'package:simanja/view/user/services/medicine.dart';
 import 'package:simanja/view/user/services/veterinary.dart';
 import 'information/about_us.dart';
+import 'information/my_pets/my_pets.dart';
 
 class Home extends StatelessWidget {
   final DataController controller = Get.put(DataController());
@@ -45,32 +46,10 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              IntroWidgets(),
+              const IntroWidgets(),
 
               ///Services
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "| ",
-                      style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Services",
-                      style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5),
-                    )
-                  ],
-                ),
-              ),
+              const SingleLineTextMenu( title: "Services",),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -113,52 +92,38 @@ class Home extends StatelessWidget {
 
               ///Information
               SizedBox(height: 20.sp),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "| ",
-                      style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Information",
-                      style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5),
-                    )
-                  ],
-                ),
-              ),
+              const SingleLineTextMenu( title: "Information",),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ServiceTile(
                     onPress: (){
-                      Get.to(()=> UpdateScreen(),transition: Transition.rightToLeft);
+                      Get.to(()=> MyPetsScreen(),transition: Transition.rightToLeft);
+                    },
+                    imageUrl: cat,
+                    title: 'My Pets',
+                  ),
+                  ServiceTile(
+                    onPress: (){
+                      Get.to(()=> UserViewPostPage(),transition: Transition.rightToLeft);
                     },
                     imageUrl: update,
                     title: 'Updates',
                   ),
-                  ServiceTile(
-                    onPress: (){
-                      Get.to(()=> FormList(),transition: Transition.rightToLeft);
-                    },
-                    imageUrl: form,
-                    title: 'Fill Form',
-                  ),
+
                 ],
               ),
               SizedBox(height: 20.sp),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  ServiceTile(
+                    onPress: (){
+                      Get.to(()=> const FormList(),transition: Transition.rightToLeft);
+                    },
+                    imageUrl: form,
+                    title: 'Fill Form',
+                  ),
                   ServiceTile(
                     onPress: (){
                       Get.to(()=> const FAQPage(),transition: Transition.rightToLeft);
@@ -166,6 +131,13 @@ class Home extends StatelessWidget {
                     imageUrl: faqs,
                     title: 'FAQ',
                   ),
+
+                ],
+              ),
+              SizedBox(height: 20.sp),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
                   ServiceTile(
                     onPress: (){
                       Get.to(()=> const AboutUsPage(),transition: Transition.rightToLeft);
@@ -173,12 +145,6 @@ class Home extends StatelessWidget {
                     imageUrl: about,
                     title: 'About Us',
                   ),
-                ],
-              ),
-              SizedBox(height: 20.sp),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
                   ServiceTile(
                     onPress: ()=> controller.logout(),
                     imageUrl: logout,
@@ -194,4 +160,5 @@ class Home extends StatelessWidget {
     );
   }
 }
+
 

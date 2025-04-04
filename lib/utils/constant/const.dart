@@ -15,3 +15,4 @@ const String payment = 'assets/images/payment.png';
 const String contact = 'assets/images/contact.png';
 const String logout = 'assets/images/logout.png';
 const String message = 'assets/images/message.png';
+const String cat = 'assets/images/cat.png';

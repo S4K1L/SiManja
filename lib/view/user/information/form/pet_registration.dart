@@ -132,7 +132,7 @@ class PetRegistrationPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )),
+                    ),),
               ),
             ),
           ),
@@ -145,7 +145,6 @@ class PetRegistrationPage extends StatelessWidget {
       String labelText, String hintText, String validation) {
     return TextFormField(
       controller: controller,
-      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,

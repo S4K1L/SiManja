@@ -6,6 +6,8 @@ import 'package:simanja/utils/constant/const.dart';
 import 'package:simanja/utils/theme/colors.dart';
 import 'package:simanja/utils/widgets/intro_widgets.dart';
 import 'package:simanja/utils/widgets/service_tile.dart';
+import 'package:simanja/view/admin/updates/add_update.dart';
+import 'package:simanja/view/admin/updates/admin_view_updates.dart';
 import 'package:simanja/view/admin/veterinary/add_veterinary.dart';
 import 'package:simanja/view/admin/appointment_list.dart';
 import 'package:simanja/view/admin/chat/admin_chat_page.dart';
@@ -72,18 +74,40 @@ class AdminHome extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ServiceTile(
+                    onPress: () {
+                      Get.to(()=>  AdminViewPostPage(),transition: Transition.rightToLeft);
+                    },
+                    imageUrl: update,
+                    title: 'Updates',
+                  ),
+                  ServiceTile(
                     onPress: (){
                       Get.to(()=>  PetListScreen(),transition: Transition.rightToLeft);
                     },
-                    imageUrl: update,
-                    title: 'Activity',
+                    imageUrl: register,
+                    title: 'Registration',
                   ),
+
+
+                ],
+              ),
+              SizedBox(height: 20.sp),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
                   ServiceTile(
                     onPress: (){
                       Get.to(()=>  AdminChatPage(),transition: Transition.rightToLeft);
                     },
                     imageUrl: message,
                     title: 'Message',
+                  ),
+                  ServiceTile(
+                    onPress: (){
+                      Get.to(()=>  AppointmentListPage(),transition: Transition.rightToLeft);
+                    },
+                    imageUrl: about,
+                    title: 'Appointment',
                   ),
 
                 ],
@@ -94,24 +118,11 @@ class AdminHome extends StatelessWidget {
                 children: [
                   ServiceTile(
                     onPress: (){
-                      Get.to(()=>  AppointmentListPage(),transition: Transition.rightToLeft);
-                    },
-                    imageUrl: about,
-                    title: 'Appointment',
-                  ),
-                  ServiceTile(
-                    onPress: (){
                       Get.to(()=>  ViewVeterinaryList(),transition: Transition.rightToLeft);
                     },
                     imageUrl: vet,
                     title: 'Veterinary',
                   ),
-                ],
-              ),
-              SizedBox(height: 20.sp),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
                   ServiceTile(
                     onPress: ()=> controller.logout(),
                     imageUrl: logout,

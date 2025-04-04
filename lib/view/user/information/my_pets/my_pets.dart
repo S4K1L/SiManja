@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:simanja/controller/update_controller.dart';
+import 'package:simanja/controller/my_pet_controller.dart';
 import 'package:simanja/utils/theme/colors.dart';
 import 'pet_details.dart';
 
-class UpdateScreen extends StatelessWidget {
+class MyPetsScreen extends StatelessWidget {
 
-  UpdateScreen({super.key});
+  MyPetsScreen({super.key});
 
-  final UpdateController controller = Get.put(UpdateController());
+  final MyPetController controller = Get.put(MyPetController());
 
   @override
   Widget build(BuildContext context) {

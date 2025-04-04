@@ -8,7 +8,7 @@ import 'package:simanja/controller/contact_us_controller.dart';
 import 'package:simanja/controller/login_controller.dart';
 import 'package:simanja/controller/pet_registration_controller.dart';
 import 'package:simanja/controller/signup_controller.dart';
-import 'package:simanja/controller/update_controller.dart';
+import 'package:simanja/controller/my_pet_controller.dart';
 import 'package:simanja/controller/veterinary_controller.dart';
 import 'package:simanja/models/user_model.dart';
 import 'package:simanja/utils/theme/colors.dart';
@@ -86,7 +86,7 @@ class DataController extends GetxController{
     await Get.delete<DataController>();
     await Get.delete<VeterinaryController>();
     await Get.delete<PetRegistrationController>();
-    await Get.delete<UpdateController>();
+    await Get.delete<MyPetController>();
     await Get.delete<ContactUsController>();
     await Get.delete<AdminChatController>();
     await Get.delete<AddUpdateController>();

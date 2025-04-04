@@ -30,4 +30,15 @@ class AppointmentListController extends GetxController {
       'status': newStatus,
     });
   }
+
+  Future<void> deleteAppointment(String docId) async {
+    try {
+      await FirebaseFirestore.instance.collection('appointments').doc(docId).delete();
+      appointmentsList.removeWhere((appointment) => appointment.docId == docId);
+      Get.snackbar("Deleted", "Appointment has been deleted successfully.");
+    } catch (e) {
+      Get.snackbar("Error", "Failed to delete appointment.");
+    }
+  }
+
 }

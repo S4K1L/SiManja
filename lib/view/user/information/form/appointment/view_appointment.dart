@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -66,19 +67,9 @@ class ViewAppointmentPage extends StatelessWidget {
                       ),
                       Spacer(),
                       IconButton(
-                        icon: const Icon(Icons.delete_outline_rounded, color: Colors.red),
+                        icon: Icon(CupertinoIcons.signature, color: kGreenAccentColor,size: 32.sp,),
                         onPressed: () {
-                          Get.defaultDialog(
-                            title: "Delete Appointment",
-                            middleText: "Are you sure you want to delete this appointment?",
-                            textConfirm: "Yes",
-                            textCancel: "No",
-                            confirmTextColor: Colors.white,
-                            onConfirm: () {
-                              controller.deleteAppointment(appointment.docId);
-                              Get.back();
-                            },
-                          );
+
                         },
                       ),
 
@@ -98,7 +89,7 @@ class ViewAppointmentPage extends StatelessWidget {
               topLeft: Radius.circular(32.sp),
               topRight: Radius.circular(32.sp),
             ),
-            color: kAppBarColor
+            color: kBlueColor
           ),
           child: Padding(
             padding: EdgeInsets.all(16.sp),

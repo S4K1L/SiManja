@@ -7,7 +7,6 @@ import 'package:simanja/utils/widgets/service_tile.dart';
 import 'package:simanja/view/user/information/form/appointment/view_appointment.dart';
 import 'package:simanja/view/user/information/form/contact_us.dart';
 import 'package:simanja/view/user/information/form/payment.dart';
-import 'form/appointment.dart';
 import 'form/pet_registration.dart';
 
 class FormList extends StatelessWidget {
@@ -40,7 +39,7 @@ class FormList extends StatelessWidget {
                         color: Colors.black.withOpacity(0.1), // Light shadow color
                         spreadRadius: 2,                      // How much the shadow spreads
                         blurRadius: 8,                         // Softness of the shadow
-                        offset: Offset(4, 4),                  // Position of the shadow
+                        offset: const Offset(4, 4),                  // Position of the shadow
                       ),
                     ],
                   ),
@@ -113,7 +112,7 @@ class FormList extends StatelessWidget {
                 children: [
                   ServiceTile(
                     onPress: (){
-                      Get.to(()=> PaymentPage(),transition: Transition.rightToLeft);
+                      Get.to(()=> const PaymentPage(),transition: Transition.rightToLeft);
                     },
                     imageUrl: payment,
                     title: 'Make a Payment',

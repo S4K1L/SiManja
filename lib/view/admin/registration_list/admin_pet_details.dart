@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:simanja/controller/update_controller.dart';
+import 'package:simanja/controller/my_pet_controller.dart';
 import 'package:simanja/models/pet_model.dart';
 import 'package:simanja/utils/constant/const.dart';
 import 'package:simanja/utils/theme/colors.dart';
@@ -13,7 +13,7 @@ import 'add_updates.dart';
 class AdminPetDetailsScreen extends StatelessWidget {
   final String petUid;
   AdminPetDetailsScreen({super.key, required this.petUid});
-  final UpdateController controller = Get.put(UpdateController());
+  final MyPetController controller = Get.put(MyPetController());
 
   @override
   Widget build(BuildContext context) {

@@ -2,13 +2,12 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simanja/models/pet_model.dart';
 import 'package:simanja/models/pet_updates_model.dart';
 
-class UpdateController extends GetxController {
+class MyPetController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
@@ -192,4 +191,15 @@ class UpdateController extends GetxController {
       Get.snackbar("Error", "Failed to upload image: $e");
     }
   }
+
+  Future<void> deletePet(String petUid) async {
+    try {
+      await FirebaseFirestore.instance.collection('pet_registration').doc(petUid).delete();
+      allPetsList.removeWhere((pet) => pet.petUid == petUid);
+      Get.snackbar("Deleted", "Pet has been removed successfully.");
+    } catch (e) {
+      Get.snackbar("Error", "Failed to delete pet.");
+    }
+  }
+
 }

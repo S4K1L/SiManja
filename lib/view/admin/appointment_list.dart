@@ -125,6 +125,25 @@ class AppointmentListPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: IconButton(
+                      icon: const Icon(Icons.delete_outline_rounded, color: Colors.red),
+                      onPressed: () {
+                        Get.defaultDialog(
+                          title: "Delete Appointment",
+                          middleText: "Are you sure you want to delete this appointment?",
+                          textConfirm: "Yes",
+                          textCancel: "No",
+                          confirmTextColor: Colors.white,
+                          onConfirm: () {
+                            controller.deleteAppointment(appointment.docId);
+                            Get.back();
+                          },
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

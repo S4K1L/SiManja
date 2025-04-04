@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:simanja/controller/update_controller.dart';
+import 'package:simanja/controller/my_pet_controller.dart';
 import 'package:simanja/utils/theme/colors.dart';
 import 'package:simanja/view/admin/registration_list/admin_pet_details.dart';
 
 class PetListScreen extends StatelessWidget {
-  final UpdateController controller = Get.put(UpdateController());
+  final MyPetController controller = Get.put(MyPetController());
 
   PetListScreen({super.key}) {
     controller.fetchAllPets();
@@ -38,7 +38,6 @@ class PetListScreen extends StatelessWidget {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
-
         if (controller.allPetsList.isEmpty) {
           return const Center(child: Text("No pets found."));
         }
@@ -106,8 +105,29 @@ class PetListScreen extends StatelessWidget {
                         color: Colors.grey[700],
                       ),
                     ),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded,
-                        color: Colors.black45, size: 20),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
+                          onPressed: () {
+                            Get.defaultDialog(
+                              title: "Delete Pet",
+                              middleText: "Are you sure you want to delete this pet?",
+                              textConfirm: "Yes",
+                              textCancel: "No",
+                              confirmTextColor: Colors.white,
+                              onConfirm: () {
+                                controller.deletePet(pet.petUid);
+                                Get.back();
+                              },
+                            );
+                          },
+                        ),
+                        const Icon(Icons.arrow_forward_ios_rounded,
+                            color: Colors.black45, size: 20),
+                      ],
+                    ),
                   ),
                 ),
               ),
