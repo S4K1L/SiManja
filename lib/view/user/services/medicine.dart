@@ -12,11 +12,16 @@ class PetMedicinePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackGroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        automaticallyImplyLeading: false,
+        leading: IconButton(onPressed: (){
+          Get.back();
+        }, icon: const Icon(Icons.arrow_back_ios_new,color: kWhiteColor,)),
+        backgroundColor: kAppBarColor,
         title: Text(
           'Pet Medicine Details',
           style: TextStyle(
             fontSize: 20.sp,
+            color: kWhiteColor,
             fontWeight: FontWeight.bold,
             fontFamily: "AvarezoSerif",
           ),
@@ -46,7 +51,7 @@ class PetMedicinePage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 22.sp,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: kBlue2Color,
                 ),
               ),
               SizedBox(height: 10.sp),
@@ -67,7 +72,7 @@ class PetMedicinePage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 22.sp,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: kBlue2Color,
                 ),
               ),
               SizedBox(height: 10.sp),
@@ -77,28 +82,28 @@ class PetMedicinePage extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   ListTile(
-                    leading: Icon(Icons.healing, color: Colors.green),
+                    leading: Icon(Icons.healing, color: kBlue2Color),
                     title: Text('Antibiotics',
                         style: TextStyle(fontSize: 18.sp, color: kBlackColor)),
                     subtitle: Text('Treat bacterial infections effectively.',
                         style: TextStyle(color: kBlackColor)),
                   ),
                   ListTile(
-                    leading: Icon(Icons.vaccines, color: Colors.green),
+                    leading: Icon(Icons.vaccines, color: kBlue2Color),
                     title: Text('Vaccines',
                         style: TextStyle(fontSize: 18.sp, color: kBlackColor)),
                     subtitle: Text('Protect against common diseases.',
                         style: TextStyle(color: kBlackColor)),
                   ),
                   ListTile(
-                    leading: Icon(Icons.pets, color: Colors.green),
+                    leading: Icon(Icons.pets, color: kBlue2Color),
                     title: Text('Dewormers',
                         style: TextStyle(fontSize: 18.sp, color: kBlackColor)),
                     subtitle: Text('Eliminate internal parasites.',
                         style: TextStyle(color: kBlackColor)),
                   ),
                   ListTile(
-                    leading: Icon(Icons.add_reaction, color: Colors.green),
+                    leading: Icon(Icons.add_reaction, color: kBlue2Color),
                     title: Text('Supplements',
                         style: TextStyle(fontSize: 18.sp, color: kBlackColor)),
                     subtitle: Text('Boost immunity and vitality.',

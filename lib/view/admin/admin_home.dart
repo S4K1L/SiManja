@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:simanja/controller/data_controller.dart';
 import 'package:simanja/utils/constant/const.dart';
 import 'package:simanja/utils/theme/colors.dart';
+import 'package:simanja/utils/widgets/intro_widgets.dart';
 import 'package:simanja/utils/widgets/service_tile.dart';
+import 'package:simanja/view/admin/veterinary/add_veterinary.dart';
+import 'package:simanja/view/admin/appointment_list.dart';
+import 'package:simanja/view/admin/chat/admin_chat_page.dart';
+
+import 'registration_list/pet_list.dart';
+import 'veterinary/view_vaterinary.dart';
 
 class AdminHome extends StatelessWidget {
-  const AdminHome({super.key});
+  final DataController controller = Get.put(DataController());
+  AdminHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,112 +31,19 @@ class AdminHome extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "SiManja",
+                      "Welcome, Admin",
                       style: TextStyle(
                           fontSize: 20.sp,
                           fontFamily: "AvarezoSerif",
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.5),
                     ),
-                    Spacer(),
-                    CircleAvatar(
-                      backgroundColor: Colors.blue.withOpacity(0.4.sp),
-                      child: IconButton(onPressed: (){
-
-                      }, icon: Icon(
-                        Icons.logout,
-                        size: 26.sp,
-                        color: kWhiteColor,
-                      )),
-                    ),
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0.sp),
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 6.5.sp,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.sp),
-                      color: kBlackColor),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 16.sp,
-                      ),
-                      Text(
-                        "Pet Day Care System\nSiManja",
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          color: kWhiteColor,
-                          fontFamily: "AvarezoSerif",
-                        ),
-                      ),
-                      const Spacer(),
-                      Image.asset(logo),
-                    ],
-                  ),
-                ),
-              ),
+              IntroWidgets(),
 
-              ///Services
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "| ",
-                      style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Services",
-                      style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5),
-                    )
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ServiceTile(
-                    onPress: (){},
-                    imageUrl: vet,
-                    title: 'Veterinary',
-                  ),
-                  ServiceTile(
-                    onPress: (){},
-                    imageUrl: grooming,
-                    title: 'Grooming',
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.sp),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ServiceTile(
-                    onPress: (){},
-                    imageUrl: medicine,
-                    title: 'Medicine',
-                  ),
-                  ServiceTile(
-                    onPress: (){},
-                    imageUrl: food,
-                    title: 'Foods',
-                  ),
-                ],
-              ),
-
-              ///Services
+              ///information
               SizedBox(height: 20.sp),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -155,14 +72,39 @@ class AdminHome extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ServiceTile(
-                    onPress: (){},
+                    onPress: (){
+                      Get.to(()=>  PetListScreen(),transition: Transition.rightToLeft);
+                    },
                     imageUrl: update,
-                    title: 'Updates',
+                    title: 'Activity',
                   ),
                   ServiceTile(
-                    onPress: (){},
-                    imageUrl: register,
-                    title: 'Registration',
+                    onPress: (){
+                      Get.to(()=>  AdminChatPage(),transition: Transition.rightToLeft);
+                    },
+                    imageUrl: message,
+                    title: 'Message',
+                  ),
+
+                ],
+              ),
+              SizedBox(height: 20.sp),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ServiceTile(
+                    onPress: (){
+                      Get.to(()=>  AppointmentListPage(),transition: Transition.rightToLeft);
+                    },
+                    imageUrl: about,
+                    title: 'Appointment',
+                  ),
+                  ServiceTile(
+                    onPress: (){
+                      Get.to(()=>  ViewVeterinaryList(),transition: Transition.rightToLeft);
+                    },
+                    imageUrl: vet,
+                    title: 'Veterinary',
                   ),
                 ],
               ),
@@ -171,15 +113,11 @@ class AdminHome extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ServiceTile(
-                    onPress: (){},
-                    imageUrl: faqs,
-                    title: 'FAQS',
+                    onPress: ()=> controller.logout(),
+                    imageUrl: logout,
+                    title: 'Logout',
                   ),
-                  ServiceTile(
-                    onPress: (){},
-                    imageUrl: about,
-                    title: 'About Us',
-                  ),
+
                 ],
               ),
             ],

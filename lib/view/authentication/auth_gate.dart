@@ -41,7 +41,7 @@ class _AuthGateState extends State<AuthGate> {
         Get.offAll(()=> Home());
       }
       else if (userType == "admin") {
-        Get.offAll(()=> const AdminHome());
+        Get.offAll(()=> AdminHome());
       }
       else {
         print('user data not found');
@@ -51,6 +51,4 @@ class _AuthGateState extends State<AuthGate> {
       print('user data not found');
     }
   }
-
-
 }

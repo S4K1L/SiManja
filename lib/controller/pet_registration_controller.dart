@@ -10,6 +10,8 @@ class PetRegistrationController extends GetxController {
   final petTypeController = TextEditingController();
   final petAgeController = TextEditingController();
   final contactNumberController = TextEditingController();
+  final healthHistoryController = TextEditingController();
+  final specialNeedController = TextEditingController();
   var isLoading = false.obs;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -22,6 +24,8 @@ class PetRegistrationController extends GetxController {
     petTypeController.dispose();
     petAgeController.dispose();
     contactNumberController.dispose();
+    healthHistoryController.dispose();
+    specialNeedController.dispose();
     super.onClose();
   }
 
@@ -35,15 +39,21 @@ class PetRegistrationController extends GetxController {
           throw Exception("User not logged in");
         }
 
-        await _firestore.collection('pet_registration').add({
+        // Add pet to Firestore and get document reference
+        DocumentReference docRef = await _firestore.collection('pet_registration').add({
           'owner_name': ownerNameController.text.trim(),
           'pet_name': petNameController.text.trim(),
           'pet_type': petTypeController.text.trim(),
           'pet_age': petAgeController.text.trim(),
+          'pet_health_History': healthHistoryController.text.trim(),
+          'pet_special_need': specialNeedController.text.trim(),
           'contact_number': contactNumberController.text.trim(),
           'user_uid': user.uid,
           'timestamp': FieldValue.serverTimestamp(),
         });
+
+        // Update the document with its own ID
+        await docRef.update({'pet_uid': docRef.id});
 
         Get.snackbar(
           'Registration Successful',
@@ -51,7 +61,7 @@ class PetRegistrationController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
           snackPosition: SnackPosition.BOTTOM,
-          margin: EdgeInsets.only(bottom: 20),
+          margin: const EdgeInsets.only(bottom: 20),
         );
         clearFields();
       } catch (e) {
@@ -61,7 +71,7 @@ class PetRegistrationController extends GetxController {
           backgroundColor: Colors.red,
           colorText: Colors.white,
           snackPosition: SnackPosition.BOTTOM,
-          margin: EdgeInsets.only(bottom: 20),
+          margin: const EdgeInsets.only(bottom: 20),
         );
       } finally {
         isLoading.value = false;
@@ -75,5 +85,7 @@ class PetRegistrationController extends GetxController {
     petTypeController.clear();
     petAgeController.clear();
     contactNumberController.clear();
+    healthHistoryController.clear();
+    specialNeedController.clear();
   }
 }

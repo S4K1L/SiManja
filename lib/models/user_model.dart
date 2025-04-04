@@ -4,11 +4,13 @@ class UserModel {
   final String? phone;
   final String? email;
   final String? name;
+  final String? role;
 
   UserModel({
     this.phone,
     this.email,
     this.name,
+    this.role,
   });
 
   factory UserModel.fromSnapshot(DocumentSnapshot doc) {
@@ -16,6 +18,7 @@ class UserModel {
       phone: doc['phone'],
       email: doc['email'],
       name: doc['name'],
+      role: doc['role'],
     );
   }
 
@@ -23,7 +26,8 @@ class UserModel {
     return {
       'phone': phone,
       'email': email,
-      'name': name
+      'name': name,
+      'role': role
     };
   }
 }

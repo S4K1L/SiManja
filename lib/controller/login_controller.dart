@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simanja/controller/signup_controller.dart';
 import 'package:simanja/utils/theme/colors.dart';
+import 'package:simanja/view/admin/admin_home.dart';
 import 'package:simanja/view/authentication/login.dart';
 import 'package:simanja/view/user/home.dart';
 import '../models/user_model.dart';
@@ -18,12 +19,7 @@ class LoginController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   var user = UserModel().obs;
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    fetchLoggedInUser();
-  }
+
 
   /// Login function
   Future<void> login() async {
@@ -117,7 +113,7 @@ class LoginController extends GetxController {
       if (userType == "user") {
         Get.to(()=>  Home(),transition: Transition.fadeIn,duration: const Duration(milliseconds: 300));
       } else if (userType == "admin") {
-        //Get.toNamed(RoutesPath.adminBottomBar);
+        Get.to(()=>  AdminHome(),transition: Transition.fadeIn,duration: const Duration(milliseconds: 300));
       } else {
         Get.snackbar(
           'Try again',
@@ -168,57 +164,5 @@ class LoginController extends GetxController {
       return false;
     }
     return true;
-  }
-
-  // Logout the user
-  Future<void> logout() async {
-    try {
-      await _auth.signOut();
-      // Clear all models
-      _clearState();
-
-      Get.snackbar(
-        'Logout Success',
-        'You have successfully logged out!',
-        colorText: kWhiteColor,
-        backgroundColor: kPrimaryColor,
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.only(bottom: 30, left: 16, right: 16),
-      );
-
-      // Navigate to login page
-      Get.offAll(()=> Login(),transition: Transition.rightToLeft);
-    } catch (e) {
-      debugPrint("Error logging out: $e");
-      Get.snackbar('Error', 'Failed to log out. Please try again.');
-    }
-  }
-
-  // Fetch the logged-in user's data
-  Future<void> fetchLoggedInUser() async {
-    isLoading.value = true;
-    try {
-      User? currentUser = _auth.currentUser;
-      if (currentUser != null) {
-        DocumentSnapshot doc = await _firestore.collection('users').doc(currentUser.uid).get();
-        if (doc.exists) {
-          user.value = UserModel.fromSnapshot(doc);
-        } else {
-          user.value = UserModel(); // Assign default empty model if no data found
-          print("No user data found in Firestore");
-        }
-      }
-    } catch (e) {
-      print("Error fetching user data: $e");
-      user.value = UserModel(); // Fallback to default empty model
-    } finally {
-      isLoading.value = false;
-    }
-  }
-
-  // Clear user-related state and controllers
-  void _clearState() async {
-    await Get.delete<LoginController>();
-    await Get.delete<SignupController>();
   }
 }

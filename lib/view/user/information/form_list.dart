@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:simanja/utils/constant/const.dart';
 import 'package:simanja/utils/theme/colors.dart';
 import 'package:simanja/utils/widgets/service_tile.dart';
-import 'package:simanja/view/user/form/appointment.dart';
-import 'package:simanja/view/user/form/pet_registration.dart';
+import 'package:simanja/view/user/information/form/appointment/view_appointment.dart';
+import 'package:simanja/view/user/information/form/contact_us.dart';
+import 'package:simanja/view/user/information/form/payment.dart';
+import 'form/appointment.dart';
+import 'form/pet_registration.dart';
 
 class FormList extends StatelessWidget {
   const FormList({super.key});
@@ -15,6 +18,7 @@ class FormList extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackGroundColor,
       appBar: AppBar(
+        backgroundColor: kBackGroundColor,
         leading: IconButton(onPressed: (){
           Get.back();
         }, icon: const Icon(Icons.arrow_back_ios_new)),
@@ -29,8 +33,17 @@ class FormList extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 6.5.sp,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.sp),
-                      color: kBlackColor),
+                    borderRadius: BorderRadius.circular(16.sp),
+                    color: kWhiteColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1), // Light shadow color
+                        spreadRadius: 2,                      // How much the shadow spreads
+                        blurRadius: 8,                         // Softness of the shadow
+                        offset: Offset(4, 4),                  // Position of the shadow
+                      ),
+                    ],
+                  ),
                   child: Row(
                     children: [
                       SizedBox(
@@ -40,7 +53,7 @@ class FormList extends StatelessWidget {
                         "Fill Form and\nSubmit",
                         style: TextStyle(
                           fontSize: 18.sp,
-                          color: kWhiteColor,
+                          color: kBlackColor,
                           fontFamily: "AvarezoSerif",
                         ),
                       ),
@@ -51,7 +64,7 @@ class FormList extends StatelessWidget {
                 ),
               ),
 
-              ///Services
+              ///Choose
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -87,7 +100,7 @@ class FormList extends StatelessWidget {
                   ),
                   ServiceTile(
                     onPress: (){
-                      Get.to(()=> AppointmentPage(),transition: Transition.rightToLeft);
+                      Get.to(()=> ViewAppointmentPage(),transition: Transition.rightToLeft);
                     },
                     imageUrl: appointment,
                     title: 'Appointment',
@@ -99,12 +112,16 @@ class FormList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ServiceTile(
-                    onPress: (){},
+                    onPress: (){
+                      Get.to(()=> PaymentPage(),transition: Transition.rightToLeft);
+                    },
                     imageUrl: payment,
                     title: 'Make a Payment',
                   ),
                   ServiceTile(
-                    onPress: (){},
+                    onPress: (){
+                      Get.to(()=> ContactUsPage(),transition: Transition.rightToLeft);
+                    },
                     imageUrl: contact,
                     title: 'Contact Us',
                   ),

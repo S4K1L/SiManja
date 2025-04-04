@@ -42,6 +42,8 @@ dependencies:
   firebase_storage:
   flutter_screenutil:
   skeletonizer: ^1.4.3
+  flutter_local_notifications:
+  image_picker:
 
 dev_dependencies:
   flutter_test:
@@ -67,8 +69,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/
-     - assets/logo/
+    - assets/images/
+    - assets/logo/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -83,10 +85,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: Bravecho
-       fonts:
-         - asset: assets/font/Bravecho.otf
+    - family: Bravecho
+      fonts:
+        - asset: assets/font/Bravecho.otf
 
-     - family: AvarezoSerif
-       fonts:
-         - asset: assets/font/AvarezoSerif.otf
+    - family: AvarezoSerif
+      fonts:
+        - asset: assets/font/AvarezoSerif.otf

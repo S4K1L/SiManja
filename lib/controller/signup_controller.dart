@@ -160,7 +160,7 @@ class SignupController extends GetxController {
         );
       } else if (userType == "admin") {
         Get.to(
-          () => const AdminHome(),
+          () => AdminHome(),
           transition: Transition.fadeIn,
           duration: const Duration(milliseconds: 300),
         );

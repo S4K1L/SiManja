@@ -11,15 +11,17 @@ class PetGroomingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kAppBarColor,
         leading: IconButton(
             onPressed: () {
               Get.back();
             },
-            icon: const Icon(Icons.arrow_back_ios_new)),
+            icon: const Icon(Icons.arrow_back_ios_new,color: kWhiteColor,)),
         title: Text(
           'Pet Grooming Services',
           style: TextStyle(
             fontSize: 20.sp,
+            color: kWhiteColor,
             fontWeight: FontWeight.bold,
             fontFamily: "AvarezoSerif",
           ),
@@ -48,7 +50,7 @@ class PetGroomingPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
-                color: Colors.deepPurpleAccent,
+                color: kBlue2Color,
               ),
             ),
             SizedBox(height: 10.sp),
@@ -69,7 +71,7 @@ class PetGroomingPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
-                color: Colors.deepPurpleAccent,
+                color: kBlue2Color,
               ),
             ),
             SizedBox(height: 10.sp),
@@ -80,7 +82,7 @@ class PetGroomingPage extends StatelessWidget {
               children: [
                 ListTile(
                   leading:
-                      const Icon(Icons.cut, color: Colors.deepPurpleAccent),
+                      const Icon(Icons.cut, color: kBlue2Color),
                   title: Text('Hair Trimming',
                       style: TextStyle(fontSize: 18.sp, color: kBlackColor)),
                   subtitle: const Text('Keep your pet neat and tidy.',
@@ -88,7 +90,7 @@ class PetGroomingPage extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(Icons.bathtub,
-                      color: Colors.deepPurpleAccent),
+                      color: kBlue2Color),
                   title: Text('Bathing & Drying',
                       style: TextStyle(fontSize: 18.sp, color: kBlackColor)),
                   subtitle: const Text('Refresh and clean your pet.',
@@ -96,7 +98,7 @@ class PetGroomingPage extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(Icons.clean_hands,
-                      color: Colors.deepPurpleAccent),
+                      color: kBlue2Color),
                   title: Text('Nail Clipping',
                       style: TextStyle(fontSize: 18.sp, color: kBlackColor)),
                   subtitle: const Text('Maintain healthy paws.',
@@ -104,7 +106,7 @@ class PetGroomingPage extends StatelessWidget {
                 ),
                 ListTile(
                   leading:
-                      const Icon(Icons.spa, color: Colors.deepPurpleAccent),
+                      const Icon(Icons.spa, color: kBlue2Color),
                   title: Text('Spa & Massage',
                       style: TextStyle(fontSize: 18.sp, color: kBlackColor)),
                   subtitle: const Text('Relaxation and care for your pet.',

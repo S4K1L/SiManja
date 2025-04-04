@@ -72,6 +72,30 @@ class VeterinaryController extends GetxController {
     locationController.clear();
   }
 
+  Future<void> deleteVeterinary(String docId) async {
+    try {
+      await FirebaseFirestore.instance.collection('veterinary').doc(docId).delete();
+      Get.snackbar(
+        'Deleted',
+        'Veterinary deleted successfully.',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.only(bottom: 20),
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to delete veterinary: $e',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.only(bottom: 20),
+      );
+    }
+  }
+
+
   @override
   void onClose() {
     nameController.dispose();

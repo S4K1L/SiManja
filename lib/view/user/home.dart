@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:simanja/controller/data_controller.dart';
 import 'package:simanja/controller/login_controller.dart';
 import 'package:simanja/utils/constant/const.dart';
 import 'package:simanja/utils/theme/colors.dart';
+import 'package:simanja/utils/widgets/intro_widgets.dart';
 import 'package:simanja/utils/widgets/service_tile.dart';
+import 'package:simanja/view/user/information/faq.dart';
+import 'package:simanja/view/user/information/form_list.dart';
+import 'package:simanja/view/user/information/update/update.dart';
+import 'package:simanja/view/user/services/food.dart';
 import 'package:simanja/view/user/services/grooming.dart';
 import 'package:simanja/view/user/services/medicine.dart';
 import 'package:simanja/view/user/services/veterinary.dart';
-import 'form/form_list.dart';
+import 'information/about_us.dart';
 
 class Home extends StatelessWidget {
-  final LoginController controller = Get.put(LoginController());
+  final DataController controller = Get.put(DataController());
   Home({super.key});
 
   @override
@@ -27,56 +33,19 @@ class Home extends StatelessWidget {
                     EdgeInsets.symmetric(horizontal: 16.sp, vertical: 8.sp),
                 child: Row(
                   children: [
-                    Text(
+                    Obx((){return Text(
                       "Hi, ${controller.user.value.name.toString()}",
                       style: TextStyle(
-                          fontSize: 18.sp,
-                          fontFamily: "AvarezoSerif",
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.5,
+                        fontSize: 18.sp,
+                        fontFamily: "AvarezoSerif",
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.5,
                       ),
-                    ),
-                    Spacer(),
-                    CircleAvatar(
-                      backgroundColor: Colors.blue.withOpacity(0.4.sp),
-                      child: IconButton(onPressed: (){
-                        controller.logout();
-                      }, icon: Icon(
-                        Icons.logout,
-                        size: 26.sp,
-                        color: kWhiteColor,
-                      )),
-                    ),
+                    );}),
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0.sp),
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 6.5.sp,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.sp),
-                      color: kBlackColor),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 16.sp,
-                      ),
-                      Text(
-                        "Pet Day Care System\nSiManja",
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          color: kWhiteColor,
-                          fontFamily: "AvarezoSerif",
-                        ),
-                      ),
-                      const Spacer(),
-                      Image.asset(logo),
-                    ],
-                  ),
-                ),
-              ),
+              IntroWidgets(),
 
               ///Services
               Padding(
@@ -133,14 +102,16 @@ class Home extends StatelessWidget {
                     title: 'Medicine',
                   ),
                   ServiceTile(
-                    onPress: (){},
+                    onPress: (){
+                      Get.to(()=> const CatFoodPage(),transition: Transition.rightToLeft);
+                    },
                     imageUrl: food,
                     title: 'Foods',
                   ),
                 ],
               ),
 
-              ///Services
+              ///Information
               SizedBox(height: 20.sp),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -169,7 +140,9 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ServiceTile(
-                    onPress: (){},
+                    onPress: (){
+                      Get.to(()=> UpdateScreen(),transition: Transition.rightToLeft);
+                    },
                     imageUrl: update,
                     title: 'Updates',
                   ),
@@ -187,15 +160,31 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ServiceTile(
-                    onPress: (){},
+                    onPress: (){
+                      Get.to(()=> const FAQPage(),transition: Transition.rightToLeft);
+                    },
                     imageUrl: faqs,
                     title: 'FAQ',
                   ),
                   ServiceTile(
-                    onPress: (){},
+                    onPress: (){
+                      Get.to(()=> const AboutUsPage(),transition: Transition.rightToLeft);
+                    },
                     imageUrl: about,
                     title: 'About Us',
                   ),
+                ],
+              ),
+              SizedBox(height: 20.sp),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ServiceTile(
+                    onPress: ()=> controller.logout(),
+                    imageUrl: logout,
+                    title: 'Logout',
+                  ),
+
                 ],
               ),
             ],
@@ -205,3 +194,4 @@ class Home extends StatelessWidget {
     );
   }
 }
+
