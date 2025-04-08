@@ -16,9 +16,11 @@ class _PaymentPageState extends State<PaymentPage> {
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController expiryController = TextEditingController();
   final TextEditingController cvvController = TextEditingController();
+  final TextEditingController amountController = TextEditingController();
 
   void processPayment() {
-    Get.snackbar("Payment Successful", "Your payment of \$99.99 has been processed successfully!", backgroundColor: Colors.green, colorText: Colors.white);
+    String amount = amountController.text.toString();
+    Get.snackbar("Payment Successful", "Your payment of RM.$amount has been processed successfully!", backgroundColor: Colors.green, colorText: Colors.white);
   }
 
   @override
@@ -99,6 +101,12 @@ class _PaymentPageState extends State<PaymentPage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 10.h),
+                TextField(
+                  controller: amountController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(labelText: "RM Amount",hintText: ""),
+                ),
                 SizedBox(height: 20.h),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -108,7 +116,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   ),
                   onPressed: processPayment,
                   child: Center(
-                    child: Text("Pay \$99.99", style: TextStyle(color: kWhiteColor, fontSize: 18.sp)),
+                    child: Text("Pay Now", style: TextStyle(color: kWhiteColor, fontSize: 18.sp)),
                   ),
                 ),
                 SizedBox(height: 20.h),
